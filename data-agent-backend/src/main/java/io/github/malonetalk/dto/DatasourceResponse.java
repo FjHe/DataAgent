@@ -26,6 +26,7 @@ public record DatasourceResponse(
         String host,
         Integer port,
         String databaseName,
+        String schemaName,
         String username,
         String connectionUrl,
         String status,

@@ -92,7 +92,10 @@ public class DynamicDataSourceManager {
             return datasource.getConnectionUrl();
         }
         return type.buildJdbcUrl(
-                datasource.getHost(), datasource.getPort(), datasource.getDatabaseName());
+                datasource.getHost(),
+                datasource.getPort(),
+                datasource.getDatabaseName(),
+                datasource.getSchemaName());
     }
 
     public void removeDataSource(Integer datasourceId) {

@@ -25,6 +25,7 @@ public record DatasourceRequest(
         String host,
         Integer port,
         String databaseName,
+        String schemaName,
         String username,
         String password,
         String connectionUrl,

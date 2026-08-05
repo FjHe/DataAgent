@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS `datasource` (
     `host` VARCHAR(255) DEFAULT NULL COMMENT '主机地址',
     `port` INT(11) DEFAULT NULL COMMENT '端口号',
     `database_name` VARCHAR(255) DEFAULT NULL COMMENT '数据库名称',
+    `schema_name` VARCHAR(255) DEFAULT NULL COMMENT 'Schema名称（部分数据库存在）',
     `username` VARCHAR(255) DEFAULT NULL COMMENT '用户名',
     `password` VARCHAR(255) DEFAULT NULL COMMENT '密码',
     `connection_url` VARCHAR(500) DEFAULT NULL COMMENT '连接URL',

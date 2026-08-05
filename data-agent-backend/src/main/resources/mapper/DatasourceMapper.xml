@@ -9,6 +9,7 @@
         <result column="host" property="host"/>
         <result column="port" property="port"/>
         <result column="database_name" property="databaseName"/>
+        <result column="schema_name" property="schemaName"/>
         <result column="username" property="username"/>
         <result column="password" property="password"/>
         <result column="connection_url" property="connectionUrl"/>
@@ -38,11 +39,11 @@
 
     <insert id="insert" parameterType="io.github.malonetalk.entity.Datasource" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO datasource (
-            name, type, host, port, database_name, username, password,
+            name, type, host, port, database_name, schema_name, username, password,
             connection_url, status, test_status, description, creator_id,
             create_time, update_time
         ) VALUES (
-            #{name}, #{type}, #{host}, #{port}, #{databaseName}, #{username}, #{password},
+            #{name}, #{type}, #{host}, #{port}, #{databaseName}, #{schemaName}, #{username}, #{password},
             #{connectionUrl}, #{status}, #{testStatus}, #{description}, #{creatorId},
             #{createTime}, #{updateTime}
         )
@@ -56,6 +57,7 @@
             <if test="host != null">host = #{host},</if>
             <if test="port != null">port = #{port},</if>
             <if test="databaseName != null">database_name = #{databaseName},</if>
+            <if test="schemaName != null">schema_name = #{schemaName},</if>
             <if test="username != null">username = #{username},</if>
             <if test="password != null">password = #{password},</if>
             <if test="connectionUrl != null">connection_url = #{connectionUrl},</if>

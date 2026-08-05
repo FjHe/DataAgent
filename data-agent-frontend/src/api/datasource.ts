@@ -24,6 +24,7 @@ export interface DatasourceRequest {
   host?: string;
   port?: number;
   databaseName?: string;
+  schemaName?: string;
   username?: string;
   password?: string;
   connectionUrl?: string;
@@ -37,6 +38,7 @@ export interface DatasourceResponse {
   host?: string;
   port?: number;
   databaseName?: string;
+  schemaName?: string;
   username?: string;
   connectionUrl?: string;
   status?: string;

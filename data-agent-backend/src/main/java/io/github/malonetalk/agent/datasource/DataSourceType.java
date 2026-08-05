@@ -49,4 +49,17 @@ public enum DataSourceType {
             case ORACLE -> String.format("%s%s:%d:%s", urlPrefix, host, port, databaseName);
         };
     }
+
+    public String buildJdbcUrl(String host, int port, String databaseName, String schemaName) {
+        String baseUrl = buildJdbcUrl(host, port, databaseName);
+        return switch (this) {
+            case POSTGRESQL -> {
+                if (schemaName != null && !schemaName.isBlank()) {
+                    yield baseUrl + "?currentSchema=" + schemaName;
+                }
+                yield baseUrl;
+            }
+            default -> baseUrl;
+        };
+    }
 }

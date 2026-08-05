@@ -46,6 +46,7 @@
     host: '',
     port: undefined as number | undefined,
     databaseName: '',
+    schemaName: '',
     username: '',
     password: '',
     connectionUrl: '',
@@ -80,6 +81,7 @@
       host: '',
       port: undefined,
       databaseName: '',
+      schemaName: '',
       username: '',
       password: '',
       connectionUrl: '',
@@ -103,6 +105,7 @@
       host: row.host,
       port: row.port,
       databaseName: row.databaseName,
+      schemaName: row.schemaName || '',
       username: row.username,
       password: '',
       connectionUrl: row.connectionUrl,
@@ -190,6 +193,10 @@
               <span class="expand-label">数据库名：</span>
               <span>{{ row.databaseName ?? '-' }}</span>
             </div>
+            <div v-if="row.schemaName" class="expand-item">
+              <span class="expand-label">Schema：</span>
+              <span>{{ row.schemaName }}</span>
+            </div>
             <div class="expand-item">
               <span class="expand-label">用户名：</span>
               <span>{{ row.username ?? '-' }}</span>
@@ -265,6 +272,14 @@
       </el-form-item>
       <el-form-item label="数据库名" prop="databaseName" :error="fieldErrors.databaseName">
         <el-input v-model="form.databaseName" placeholder="请输入数据库名" />
+      </el-form-item>
+      <el-form-item
+        v-if="form.type === 'PostgreSQL'"
+        label="Schema"
+        prop="schemaName"
+        :error="fieldErrors.schemaName"
+      >
+        <el-input v-model="form.schemaName" placeholder="请输入Schema名称（可选，默认public）" />
       </el-form-item>
       <el-form-item label="用户名" prop="username" :error="fieldErrors.username">
         <el-input v-model="form.username" placeholder="请输入用户名" />
