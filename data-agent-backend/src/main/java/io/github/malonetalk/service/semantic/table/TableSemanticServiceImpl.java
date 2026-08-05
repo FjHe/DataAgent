@@ -31,6 +31,7 @@ import io.github.malonetalk.entity.TableInfo;
 import io.github.malonetalk.exception.BusinessException;
 import io.github.malonetalk.mapper.TableInfoMapper;
 import io.github.malonetalk.service.DatasourceService;
+import io.github.malonetalk.service.semantic.DomainService;
 import io.github.malonetalk.service.semantic.SemanticMergeService;
 import io.github.malonetalk.utils.SemanticUtils;
 import java.time.LocalDateTime;
@@ -45,6 +46,7 @@ import org.springframework.stereotype.Service;
 public class TableSemanticServiceImpl implements TableSemanticService {
 
     private final DatasourceService datasourceService;
+    private final DomainService domainService;
     private final TableInfoMapper tableInfoMapper;
     private final SemanticMergeService semanticMergeService;
     private final SemanticConverter semanticConverter;
@@ -97,13 +99,7 @@ public class TableSemanticServiceImpl implements TableSemanticService {
         if (datasourceService.findById(datasourceId) == null) {
             return List.of();
         }
-        return tableInfoMapper.selectByDatasourceId(datasourceId).stream()
-                .map(TableInfo::getDomain)
-                .filter(domain -> domain != null && !domain.isBlank())
-                .map(String::trim)
-                .distinct()
-                .sorted(String::compareToIgnoreCase)
-                .toList();
+        return domainService.listDomainNames();
     }
 
     @Override
