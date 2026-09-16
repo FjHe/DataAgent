@@ -610,7 +610,9 @@
 
     const target = event.target as globalThis.Element | null;
     if (
-      target?.closest('.relation-side-card, .el-dialog, .el-button, .el-switch, .relation-edge-hit')
+      target?.closest(
+        '.relation-side-card, .el-dialog, .el-button, .el-switch, .relation-edge-hit, .canvas-controls',
+      )
     ) {
       return;
     }
